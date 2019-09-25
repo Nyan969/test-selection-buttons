@@ -1,0 +1,123 @@
+@import url(normalize.css);
+/*root*/
+.root {
+    background-color: #85a5d4;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1024px;
+}
+
+.root__section {
+    width: 1024px;
+    height: 560px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25), 0 8px 15px rgba(0, 0, 0, 0.22);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    position: relative;
+}
+
+.answer-options {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 30px;
+}
+
+.task {
+    font-size: 32px;
+    text-align: center;
+    margin: 0;
+}
+
+.answer {
+    display: flex;
+    height: 38px;
+    border-radius: 7px;
+    font-size: 20px;
+    white-space: nowrap;
+    justify-content: center;
+    align-items: center;
+    border: #3a76a3 solid 2px;
+    color: #3a76a3;
+    padding: 0 7px;
+    transition: background-color 0.5s ease 0s;
+    cursor: pointer;
+}
+
+.answer_selected {
+   color: #fff;
+    background-color: #3a76a3;
+}
+
+.answer_wrong {
+   color: #fff;
+    background-color: #f05a69;
+    border: #f05a69 solid 2px;
+}
+
+.answer_correct {
+   color: #fff;
+    background-color: #8fbe83;
+    border: #8fbe83 solid 2px;
+}
+
+.answer:hover {
+    background-color: #f2f2f2;
+    color: #3a76a3;
+}
+.hint {
+    font-size: 20px;
+    color: #000;
+    display: flex;
+    height: 38px;
+    border-radius: 7px;
+    white-space: nowrap;
+    justify-content: center;
+    align-items: center;
+    padding: 0 15px;
+    background-color: #add9da;
+    position: absolute;
+    margin: auto;
+    bottom: 120px;
+}
+
+.hint_disable {
+    display: none;
+}
+
+.done {
+    font-size: 20px;
+    color: #fff;
+    display: flex;
+    height: 38px;
+    border-radius: 7px;
+    white-space: nowrap;
+    justify-content: center;
+    align-items: center;
+    padding: 0 15px;
+    cursor: pointer;
+    background-color: #70c5e2;
+}
+
+.done_disable {
+    background-color: #b9e0ed;
+}
+
+.done_active:hover {
+    background-color: #39b6e2
+}
+
+.done_wrong {
+    background-color: #f05a69;
+
+}
+.done_correct {
+    background-color: #8fbe83;
+}
