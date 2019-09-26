@@ -25,12 +25,19 @@ const btnDone = document.querySelector('.done');
 class Answer {
 
     constructor(value) {
-        this.select = this.select.bind(this);
-        this.incorrectly = this.incorrectly.bind(this);
-        this.correctly = this.correctly.bind(this);
+        this.bind();
         this.correct = value.correct;
         this.selected = false;
         this.create(value.text);
+    }
+
+    bind() {
+        this.select = this.select.bind(this);
+        this.incorrectly = this.incorrectly.bind(this);
+        this.correctly = this.correctly.bind(this);
+        this.disable = this.disable.bind(this);
+        this.enable = this.enable.bind(this);
+        this.clear = this.clear.bind(this);
     }
 
     create(text) {
@@ -57,6 +64,23 @@ class Answer {
     correctly() {
         this.answer.classList.add('answer_correct');
     }
+
+    disable() {
+        this.answer.setAttribute('style', 'pointer-events: none');
+    }
+
+    enable() {
+        this.answer.removeAttribute('style');
+    }
+
+    clear() {
+        this.selected = false;
+        this.answer.classList.remove('answer_selected');
+        this.answer.classList.remove('answer_wrong');
+        this.answer.classList.remove('answer_correct');
+        this.enable();
+    }
+
 }
 
 const answer = AnswerList.map(item => {
@@ -70,14 +94,9 @@ function checkBtnDisabled() {
 }
 
 function clear() {
+    btnDone.removeAttribute('style');
     answer.forEach(item => {
-        item.selected = false;
-    });
-    document.querySelectorAll('.answer').forEach(item => {
-        item.classList.remove('answer_selected');
-        item.classList.remove('answer_wrong');
-        item.classList.remove('answer_correct');
-
+        item.clear();
     });
     btnDone.classList.remove('done_wrong');
     btnDone.classList.add('done_disable');
@@ -93,10 +112,12 @@ function remove() {
 
 function validation() {
     hint.remove();
+    btnDone.setAttribute('style', 'pointer-events: none');
     let correctAnswers = [];
     let incorrectAnswers = [];
     //окрашивание кнопок
     answer.forEach(item => {
+        item.disable();
         item.selected === true && item.correct === true ? item.correctly() : '';
         item.selected === true && item.correct === false ? item.incorrectly() : '';
         item.correct === true ? correctAnswers.push(item.correct === true && item.selected === true) : '';
