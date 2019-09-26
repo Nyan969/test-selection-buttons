@@ -2,7 +2,24 @@ const AnswerList = [{text: '5 + x = 11', correct: true},
     {text: '16 - x = 12', correct: false},
     {text: 'x + 5 = 11', correct: true},
     {text: 'x - 16 = 12', correct: false}];
+const hint = {
+    list: ['Это не все правильные ответы', 'Вычисли x'],
+    create: function createHint(text) {
+        const hintTemplate = document.querySelector('.hint-template');
+        const hint = hintTemplate.content.querySelector('.hint');
+        hint.textContent = text;
+        const domElement = document.importNode(hintTemplate.content, true);
+        const container = document.querySelector('.hint-container');
+        container.appendChild(domElement);
+    },
 
+    remove: function removeHint() {
+        const container = document.querySelector('.hint-container');
+        while (container.firstChild) {
+            container.removeChild(container.firstChild);
+        }
+    }
+};
 const btnDone = document.querySelector('.done');
 
 class Answer {
@@ -60,6 +77,7 @@ function clear() {
 }
 
 function validation() {
+    hint.remove();
     let correctAnswers = [];
     let incorrectAnswers = [];
     //окрашивание кнопок
@@ -79,9 +97,11 @@ function validation() {
     if (correctAnswers === false && incorrectAnswers === false) {
         btnDone.classList.add('done_correct');
     } else if (correctAnswers === true && incorrectAnswers === false) {
+        hint.create(hint.list[0]);
         btnDone.classList.add('done_wrong');
         setTimeout(clear, 1000);
     } else {
+        hint.create(hint.list[1]);
         btnDone.classList.add('done_wrong');
         setTimeout(clear, 1000);
     }
