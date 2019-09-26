@@ -76,6 +76,14 @@ function clear() {
     btnDone.classList.add('done_disable');
 }
 
+function remove() {
+    const container = document.querySelector('.root__section');
+    while (container.firstChild) {
+        container.removeChild(container.firstChild);
+    }
+
+}
+
 function validation() {
     hint.remove();
     let correctAnswers = [];
@@ -96,6 +104,7 @@ function validation() {
     });
     if (correctAnswers === false && incorrectAnswers === false) {
         btnDone.classList.add('done_correct');
+        setTimeout(remove, 1500);
     } else if (correctAnswers === true && incorrectAnswers === false) {
         hint.create(hint.list[0]);
         btnDone.classList.add('done_wrong');
