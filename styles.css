@@ -105,6 +105,7 @@
 
 .done_disable {
     background-color: #b9e0ed;
+    pointer-events: none;
 }
 
 .done_active:hover {

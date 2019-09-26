@@ -40,6 +40,7 @@ class Answer {
         this.domElement = document.importNode(answerTemplate.content, true);
         this.answer = this.domElement.querySelector('.answer');
         this.answer.addEventListener('click', this.select);
+        this.answer.addEventListener('click', checkBtnDisabled);
         const container = document.querySelector('.answer-options');
         container.appendChild(this.domElement);
     }
@@ -61,6 +62,12 @@ class Answer {
 const answer = AnswerList.map(item => {
     return new Answer(item);
 });
+
+function checkBtnDisabled() {
+    answer.some(item => {
+        return item.selected === true
+    }) ? btnDone.classList.remove('done_disable') : btnDone.classList.add('done_disable');
+}
 
 function clear() {
     answer.forEach(item => {
