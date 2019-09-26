@@ -103,7 +103,7 @@
     background-color: #70c5e2;
 }
 
-.done:hover {
+.done:not(.done_correct).done:not(.done_wrong ).done:hover {
     background-color: #39b6e2;
 }
 
