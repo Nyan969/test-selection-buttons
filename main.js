@@ -45,6 +45,19 @@ const answer = AnswerList.map(item => {
     return new Answer(item);
 });
 
+function clear() {
+    answer.forEach(item => {
+        item.selected = false;
+    });
+    document.querySelectorAll('.answer').forEach(item => {
+        item.classList.remove('answer_selected');
+        item.classList.remove('answer_wrong');
+        item.classList.remove('answer_correct');
+
+    });
+    btnDone.classList.remove('done_wrong');
+    btnDone.classList.add('done_disable');
+}
 
 function validation() {
     let correctAnswers = [];
@@ -67,8 +80,10 @@ function validation() {
         btnDone.classList.add('done_correct');
     } else if (correctAnswers === true && incorrectAnswers === false) {
         btnDone.classList.add('done_wrong');
+        setTimeout(clear, 1000);
     } else {
         btnDone.classList.add('done_wrong');
+        setTimeout(clear, 1000);
     }
 }
 
