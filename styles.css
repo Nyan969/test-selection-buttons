@@ -1,5 +1,27 @@
 @import url(normalize.css);
 /*root*/
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+    13% {
+        opacity: 0.13;
+    }
+    25% {
+        opacity: 0.25;
+    }
+    38% {
+        opacity: 0.38;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
 .root {
     background-color: #85a5d4;
     display: flex;
@@ -51,6 +73,7 @@
 
 .answer_selected {
    color: #fff;
+    transition: background-color 0.7s ease 0s;
     background-color: #3a76a3;
 }
 
@@ -87,6 +110,7 @@
     align-items: center;
     padding: 0 15px;
     background-color: #add9da;
+    animation: fade-in .4s ease;
 }
 
 .done {
@@ -101,9 +125,10 @@
     padding: 0 15px;
     cursor: pointer;
     background-color: #70c5e2;
+    transition: background-color 0.5s ease 0s;
 }
 
-.done:hover {
+.done:not(.done_correct).done:not(.done_wrong ).done:hover {
     background-color: #39b6e2;
 }
 
